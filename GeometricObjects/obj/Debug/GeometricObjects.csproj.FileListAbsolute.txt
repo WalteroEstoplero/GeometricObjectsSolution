@@ -1,0 +1,7 @@
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\obj\Debug\GeometricObjects.csprojAssemblyReference.cache
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\obj\Debug\GeometricObjects.csproj.CoreCompileInputs.cache
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\bin\Debug\GeometricObjects.exe.config
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\bin\Debug\GeometricObjects.exe
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\bin\Debug\GeometricObjects.pdb
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\obj\Debug\GeometricObjects.exe
+C:\Users\walte\source\repos\GeometricObjectsSolution\GeometricObjects\obj\Debug\GeometricObjects.pdb
