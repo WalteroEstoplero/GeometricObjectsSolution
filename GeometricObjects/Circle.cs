@@ -9,17 +9,16 @@ namespace GeometricObjects
     public class Circle
     {
         private double _XCoordinate;
-        public double XCoordinate
-        {
-            get { return _XCoordinate; }
-            set { _XCoordinate = value; }
-        }
-
+//        private double _XCoordinate { get; set; }
+//        public double XCoordinate { get => _XCoordinate; set => _XCoordinate = value; }
+        public double XCoordinate { get { return _XCoordinate; } set { _XCoordinate = value; }  }
         private double _YCoordinate;
         public double YCoordinate
         {
             get { return _YCoordinate; }
-            set { _YCoordinate = value; } }
+            set { _YCoordinate = value; }
+        }
+     
 
         // Dasselbe wie public int Radius = 0;
         // public int Radius;
@@ -31,6 +30,32 @@ namespace GeometricObjects
         {
             get {return _Radius;}
             set {if (value >= 0) _Radius = value;
-             else Console.Write("Unzulässiger negativer Wert."); } }
+             else Console.Write("Unzulässiger negativer Wert."); }
+        }
+
+        public double GetArea()
+        {
+            double area = Math.Pow(Radius, 2) * Math.PI;
+            return area;
+        }
+
+        public double GetCircumference()
+        {
+            double circumference = 2 * Radius * Math.PI;
+            return circumference;
+        }
+
+        public void Move(double dx, double dy)
+        {
+            XCoordinate += dx;
+            YCoordinate += dy;
+        }
+
+        public int Bigger(Circle kreis)
+        {
+            if (this.Radius > kreis.Radius) { return 1; }
+            if (this.Radius < kreis.Radius) { return -1; }
+            return 0;
+        }
     }
 }

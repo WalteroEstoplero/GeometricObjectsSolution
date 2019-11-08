@@ -35,8 +35,21 @@ namespace GeometricObjects
 
             kreis.Radius = 12;
             Console.WriteLine("Der Kreisradius beträgt {0}", kreis.Radius);
-
             kreis = null;
+
+            Circle kreis3 = new Circle();
+            kreis3.XCoordinate = 50;
+            kreis3.YCoordinate = 25;
+            kreis3.Radius = 12;
+            int height = 30;
+            double volume = kreis3.GetArea() * height;
+            Console.WriteLine(volume);
+
+            Circle kreis4 = new Circle();
+            kreis4.XCoordinate = -100;
+            kreis4.YCoordinate = 90;
+            kreis4.Move(120, -200);
+            Console.WriteLine("x= " + kreis4.XCoordinate +";y= " + kreis4.YCoordinate);
 
 
             Console.ReadLine();
