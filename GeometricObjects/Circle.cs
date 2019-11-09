@@ -51,11 +51,15 @@ namespace GeometricObjects
             YCoordinate += dy;
         }
 
+        // Bigger Rückgaben int
+        // 1 wenn Radius des aufrufenden Objekts > übergebener Objekt.Radius
+        // -1 wenn Radius des aufrufenden Objekts < übergebener Objekt.Radius
+        // 0 wenn beide gleich
         public int Bigger(Circle kreis)
         {
-            if (this.Radius > kreis.Radius) { return 1; }
+            if (kreis == null || this.Radius > kreis.Radius) { return 1; }
             if (this.Radius < kreis.Radius) { return -1; }
-            return 0;
+            else return 0;
         }
     }
 }
