@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeometricObjects
 {
-    class Program
+        class Program
     {
         static void Main(string[] args)
         {
@@ -87,8 +87,30 @@ namespace GeometricObjects
             Console.WriteLine(demo.Add());
 
 
+            // Übergabe von Objekten
+            Demo1 object1 = new Demo1();        // Wert = 1
+            Demo2 object2 = new Demo2();        // Wert = 2
+            object2.ChangeValue(object1);
+            Console.WriteLine("object1.Value sollte 1 sein: = " + object1.Value);
+            object2.ChangeValue(ref object1);
+            Console.WriteLine("object1.Value sollte 2 sein: = " + object1.Value);
+
+            // Konstuktor-Weiterleitung
+            Circle kreis7 = new Circle(12, -100, 250);
+
+            // Vereinfachte Objektinitialisierung Kap 3.6.7 !!! KLAPPT NICHT !!!
+            Circle kreis8 = new Circle { YCoordinate = 2, XCoordinate = -7, Radius = 2 };
+
+
+            // Konstanten
+            Console.WriteLine(Mathematics.PI);
+
+            // Klassenvariable Kap 3.9.1
+            Console.WriteLine("CountCircles " + Circle.CountCircles);
+
+
 
             Console.ReadLine();
         }
-    }
+    }   // class Program
 }

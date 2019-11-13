@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="Demo.cs" />
+    <Compile Include="Demo1_2.cs" />
+    <Compile Include="Mathematics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -19,7 +19,6 @@ namespace GeometricObjects
             set { _YCoordinate = value; }
         }
      
-
         // Dasselbe wie public int Radius = 0;
         // public int Radius;
         // Da die öffentliche Eigenschaftsmethode Radius lautet, 
@@ -33,15 +32,72 @@ namespace GeometricObjects
              else Console.Write("Unzulässiger negativer Wert."); }
         }
 
+        // Klassenvariable Kap. 3.9.1
+        private static int _CountCircles;       // private !!!
+        // Klasseneigenschaftsmethode schreibgeschützt weil ohne set
+        public static int CountCircles
+        {
+            get { return _CountCircles; }
+        }
+
+
+        // Konstruktoren
+        public Circle() : this(0, 0, 0) { }                // immer 3 Parameter
+        public Circle(int radius) : this(radius, 0, 0)     // immer 3 Parameter
+        {
+            Radius = radius;
+        }
+        // Konstruktor mit maximalen Parametern
+        public Circle(int radius, double x, double y)
+        {
+            Radius = radius;
+            XCoordinate = x;
+            YCoordinate = y;
+            Circle._CountCircles++;     // Klassenvariable Kap 3.9.1
+            Console.WriteLine("Radius= " + Radius + ", XCoordinate= " + XCoordinate + ", YCoordinate= " + YCoordinate);
+        }
+
+/*
+        // Konstruktoren mit Weiterleitung (veraltet)
+        public Circle()
+        {
+
+        }
+        public Circle(int radius)
+        {
+            Radius = radius;
+        }
+        // Aufruf des Konstruktors mit 1 Parameter durch this
+        public Circle(int radius, double x, double y) : this(radius)
+        {
+            XCoordinate = x;
+            YCoordinate = y;
+//            Radius = radius;      // wird weitergeleitet
+        }
+*/
         public double GetArea()
         {
             double area = Math.Pow(Radius, 2) * Math.PI;
             return area;
         }
 
+        // Statische Methode Kap 3.9.2
+        public static double GetArea(int radius)
+        {
+            double area = Math.Pow(radius, 2) * Math.PI;
+            return area;
+        }
+
         public double GetCircumference()
         {
             double circumference = 2 * Radius * Math.PI;
+            return circumference;
+        }
+
+        // Statische Methode Kap 3.9.2
+        public static double GetCircumference(int radius)
+        {
+            double circumference = 2 * radius * Math.PI;
             return circumference;
         }
 
