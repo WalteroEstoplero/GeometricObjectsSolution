@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Ausgabe = System.Console;     // Alias Kap 3.10.4
+
 namespace GeometricObjects
 {
         class Program
     {
         static void Main(string[] args)
         {
+
             Circle kreis = new Circle();
             // kreis wird zu keinem Zeitpunkt initialisiert,
             // und daher bricht die Kompilierung mit einer Fehlermeldung ab.
@@ -108,6 +111,34 @@ namespace GeometricObjects
             // Klassenvariable Kap 3.9.1
             Console.WriteLine("CountCircles " + Circle.CountCircles);
 
+            // Aufruf statischer Klassen Kap 3.9.4
+            Console.WriteLine(Mathematics.Add(2, 77, 99));
+            Console.WriteLine(Mathematics.Subtract(2, 77, 99));
+
+            Singleton singleton1 = Singleton.Instance;
+            singleton1.Value = 128;
+            Singleton singleton2 = Singleton.Instance;
+            Console.WriteLine("Singleton " + singleton1.Value);
+            Ausgabe.WriteLine("Singleton " + singleton1.Value);     // Alias Kap 3.10.4
+
+            GraphicCircle gCircle = new GraphicCircle();
+            // mit base: 3-fach Parameterkonstruktor von Circle und Standardkonstruktor von GraphicCircle
+            // mit this: 3-fach Parameterkonstruktor von Circle und Standardkonstruktor von Circle,
+            //   dann 3-fach Parameterkonstruktor von GraphicCircle und Standardkonstruktor von GraphicCircle
+
+            gCircle.XCoordinate = 25;
+ 
+            Console.WriteLine("gCircle.XCoordinate = " + gCircle.XCoordinate);
+            Console.WriteLine("Anzahl der Kreise = {0}", GraphicCircle.CountCircles);
+
+            SubClass2 subi2 = new SubClass2();
+            subi2.DoSomething();
+
+
+            Flugzeug flg = new Flugzeug();
+            flg.Starten();
+            Hubschrauber hubi = new Hubschrauber();
+            hubi.Starten();
 
 
             Console.ReadLine();

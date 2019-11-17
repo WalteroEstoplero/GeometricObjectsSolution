@@ -1,30 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeometricObjects
 {
     public class Circle
     {
-        private double _XCoordinate;
-//        private double _XCoordinate { get; set; }
-//        public double XCoordinate { get => _XCoordinate; set => _XCoordinate = value; }
-        public double XCoordinate { get { return _XCoordinate; } set { _XCoordinate = value; }  }
-        private double _YCoordinate;
-        public double YCoordinate
-        {
-            get { return _YCoordinate; }
-            set { _YCoordinate = value; }
+
+        // ---------- Klasseneigenschaft  Kap. 3.9.1 -----------------
+
+        protected static int _CountCircles;
+        // Klasseneigenschaftsmethode schreibgeschützt weil ohne set
+        public static int CountCircles  {
+            get { return _CountCircles; }
         }
-     
-        // Dasselbe wie public int Radius = 0;
-        // public int Radius;
+
+        // -------- Eigenschaften ----------
+
+        public double XCoordinate { get; set; }
+//        private double _XCoordinate;
+//        public double XCoordinate { get => _XCoordinate; set => _XCoordinate = value; }
+//        public double XCoordinate { get { return _XCoordinate; } set { _XCoordinate = value; } }
+
+        public double YCoordinate { get; set; }
+        //        private double _YCoordinate;
+
+//        public double YCoordinate  { get { return _YCoordinate; } set { _YCoordinate = value; } }
+
         // Da die öffentliche Eigenschaftsmethode Radius lautet, 
-        // musste das private Feld aus Gründen der Eindeutigkeit umbenannt werden.
-        private int _Radius;
-        // Eigenschaftsmethode get und set
+        // muss das private Feld aus Gründen der Eindeutigkeit umbenannt werden.
+        protected int _Radius;   // Dasselbe wie protected int _Radius = 0;
         public int Radius
         {
             get {return _Radius;}
@@ -32,17 +35,9 @@ namespace GeometricObjects
              else Console.Write("Unzulässiger negativer Wert."); }
         }
 
-        // Klassenvariable Kap. 3.9.1
-        private static int _CountCircles;       // private !!!
-        // Klasseneigenschaftsmethode schreibgeschützt weil ohne set
-        public static int CountCircles
-        {
-            get { return _CountCircles; }
-        }
+        // --------- Konstruktoren ---------------
 
-
-        // Konstruktoren
-        public Circle() : this(0, 0, 0) { }                // immer 3 Parameter
+        public Circle() : this(0, 0, 0) { Console.WriteLine("Aufruf des Standardkonstruktors von Circle"); }                // immer 3 Parameter
         public Circle(int radius) : this(radius, 0, 0)     // immer 3 Parameter
         {
             Radius = radius;
@@ -53,58 +48,58 @@ namespace GeometricObjects
             Radius = radius;
             XCoordinate = x;
             YCoordinate = y;
+            Console.WriteLine("Aufruf des 3-fachen Parameterkonstruktors von Circle");
             Circle._CountCircles++;     // Klassenvariable Kap 3.9.1
-            Console.WriteLine("Radius= " + Radius + ", XCoordinate= " + XCoordinate + ", YCoordinate= " + YCoordinate);
+//            Console.WriteLine("Radius= " + Radius + ", XCoordinate= " + XCoordinate + ", YCoordinate= " + YCoordinate);
         }
 
 /*
-        // Konstruktoren mit Weiterleitung (veraltet)
-        public Circle()
-        {
-
-        }
-        public Circle(int radius)
-        {
-            Radius = radius;
-        }
-        // Aufruf des Konstruktors mit 1 Parameter durch this
-        public Circle(int radius, double x, double y) : this(radius)
-        {
-            XCoordinate = x;
-            YCoordinate = y;
-//            Radius = radius;      // wird weitergeleitet
-        }
+        // statischer Konstruktor
+        static Circle() { }
 */
+
+        /*
+                // Konstruktoren mit Weiterleitung (veraltet)
+                public Circle()
+                {
+
+                }
+                public Circle(int radius)
+                {
+                    Radius = radius;
+                }
+                // Aufruf des Konstruktors mit 1 Parameter durch this
+                public Circle(int radius, double x, double y) : this(radius)
+                {
+                    XCoordinate = x;
+                    YCoordinate = y;
+        //            Radius = radius;      // wird weitergeleitet
+                }
+        */
+
+        // ---------- Instanzmethoden ----------
+
         public double GetArea()
         {
-            double area = Math.Pow(Radius, 2) * Math.PI;
-            return area;
-        }
-
-        // Statische Methode Kap 3.9.2
-        public static double GetArea(int radius)
-        {
-            double area = Math.Pow(radius, 2) * Math.PI;
-            return area;
+            return Math.Pow(Radius, 2) * Math.PI;
         }
 
         public double GetCircumference()
         {
-            double circumference = 2 * Radius * Math.PI;
-            return circumference;
-        }
-
-        // Statische Methode Kap 3.9.2
-        public static double GetCircumference(int radius)
-        {
-            double circumference = 2 * radius * Math.PI;
-            return circumference;
+            return 2 * Radius * Math.PI;
         }
 
         public void Move(double dx, double dy)
         {
             XCoordinate += dx;
             YCoordinate += dy;
+        }
+
+        public void Move(double dx, double dy, int dRadius)
+        {
+            XCoordinate += dx;
+            YCoordinate += dy;
+            Radius += dRadius;
         }
 
         // Bigger Rückgaben int
@@ -116,6 +111,30 @@ namespace GeometricObjects
             if (kreis == null || this.Radius > kreis.Radius) { return 1; }
             if (this.Radius < kreis.Radius) { return -1; }
             else return 0;
+        }
+
+        // -------- Klassenmethoden Kap 3.9.2 ------------
+
+        public static double GetArea(int radius)
+        {
+            return Math.Pow(radius, 2) * Math.PI;
+        }
+
+        public static double GetCircumference(int radius)
+        {
+            return 2 * radius * Math.PI;
+        }
+
+        // 1 wenn Radius von kreis1 > kreis2.Radius
+        // -1 wenn Radius von kreis1 < kreis2.Radius
+        public static int Bigger(Circle kreis1, Circle kreis2)
+        {
+            if (kreis1 == null && kreis2 == null) { return 0; }
+            if (kreis1 == null) { return -1; }
+            if (kreis2 == null) return 1;
+            if (kreis1.Radius > kreis2.Radius) { return 1; }
+            if (kreis1.Radius < kreis2.Radius) { return -1; }
+            return 0;
         }
     }
 }

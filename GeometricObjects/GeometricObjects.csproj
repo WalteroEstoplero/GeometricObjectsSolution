@@ -43,12 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClass.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Demo.cs" />
     <Compile Include="Demo1_2.cs" />
+    <Compile Include="GraphicCircle.cs" />
+    <Compile Include="Luftfahrzeug.cs" />
     <Compile Include="Mathematics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
