@@ -2,8 +2,8 @@
 
 namespace GeometricObjects
 {
-    // Verdecken bzw. ausblenden
     /*
+    // Verdecken bzw. ausblenden
             public class Luftfahrzeug
             {
                 public string Hersteller { get; set; }
@@ -38,9 +38,9 @@ namespace GeometricObjects
                     Console.WriteLine("Das Hubschrauber startet.");
                 }
             }
-     */
+*/
 
-    /*
+/*
                 // Abstract mit override
                 public abstract class Luftfahrzeug      // abstract hier !
                 {
@@ -69,40 +69,57 @@ namespace GeometricObjects
                         Console.WriteLine("Das Hubschrauber startet.");
                     }
                 }
-    */
+*/
 
 
-    // Virtual mit override
-    public class Luftfahrzeug
-    {
-        public string Hersteller { get; set; }
-        public int Baujahr { get; set; }
-
-        public virtual void Starten()               // virtual hier und vollständige Methode !
+        // Virtual mit override
+        public class Luftfahrzeug
         {
-            Console.WriteLine("Das Luftfahrzeug startet.");
+            public string Hersteller { get; set; }
+            public int Baujahr { get; set; }
+
+            public virtual void Starten()               // virtual hier und vollständige Methode !
+            {
+                Console.WriteLine("Das Luftfahrzeug startet.");
+            }
+
+            public void DoSomething(Luftfahrzeug lfzg)
+            {
+                lfzg.Starten();
+
+                // Rheinwerk Kap 4.3.3
+                if (lfzg != null)
+                {
+                    if (lfzg is Flugzeug)
+                        Console.WriteLine("Spannweite: ", ((Flugzeug)lfzg).Spannweite);
+                    else if (lfzg is Hubschrauber)
+                        Console.WriteLine("Rotor: ", ((Hubschrauber)lfzg).Rotor);
+                    else
+                        Console.WriteLine("Unbekannter Typ.");
+                }
+            }
         }
-    }
 
-    public class Flugzeug : Luftfahrzeug
-    {
-        public double Spannweite { get; set; }
 
-        public override void Starten()      // override hier !
+        public class Flugzeug : Luftfahrzeug
         {
-            Console.WriteLine("Das Flugzeug startet.");
+            public double Spannweite { get; set; }
+
+            public /*new*/override void Starten()      // override hier !
+            {
+                Console.WriteLine("Das Flugzeug startet.");
+            }
         }
-    }
 
-    public class Hubschrauber : Luftfahrzeug
-    {
-        public double Rotor { get; set; }
-
-        public override void Starten()      // override hier !
+        public class Hubschrauber : Luftfahrzeug
         {
-            Console.WriteLine("Das Hubschrauber startet.");
+            public double Rotor { get; set; }
+
+            public new/*override*/ void Starten()      // override hier !
+            {
+                Console.WriteLine("Das Hubschrauber startet.");
+            }
         }
-    }
 
 }
 

@@ -47,11 +47,13 @@
     <Compile Include="Circle.cs" />
     <Compile Include="Demo.cs" />
     <Compile Include="Demo1_2.cs" />
+    <Compile Include="GeometricObject.cs" />
     <Compile Include="GraphicCircle.cs" />
     <Compile Include="Luftfahrzeug.cs" />
     <Compile Include="Mathematics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rectangle.cs" />
     <Compile Include="Singleton.cs" />
   </ItemGroup>
   <ItemGroup>

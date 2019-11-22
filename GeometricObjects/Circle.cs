@@ -4,17 +4,12 @@ namespace GeometricObjects
 {
     public class Circle
     {
-
         // ---------- Klasseneigenschaft  Kap. 3.9.1 -----------------
-
         protected static int _CountCircles;
         // Klasseneigenschaftsmethode schreibgeschützt weil ohne set
         public static int CountCircles  {
             get { return _CountCircles; }
         }
-
-        // -------- Eigenschaften ----------
-
         public double XCoordinate { get; set; }
 //        private double _XCoordinate;
 //        public double XCoordinate { get => _XCoordinate; set => _XCoordinate = value; }
@@ -28,15 +23,13 @@ namespace GeometricObjects
         // Da die öffentliche Eigenschaftsmethode Radius lautet, 
         // muss das private Feld aus Gründen der Eindeutigkeit umbenannt werden.
         protected int _Radius;   // Dasselbe wie protected int _Radius = 0;
-        public int Radius
+        public virtual int Radius   // virtual Kap 4.6.1
         {
             get {return _Radius;}
             set {if (value >= 0) _Radius = value;
              else Console.Write("Unzulässiger negativer Wert."); }
         }
-
         // --------- Konstruktoren ---------------
-
         public Circle() : this(0, 0, 0) { Console.WriteLine("Aufruf des Standardkonstruktors von Circle"); }                // immer 3 Parameter
         public Circle(int radius) : this(radius, 0, 0)     // immer 3 Parameter
         {
@@ -76,9 +69,7 @@ namespace GeometricObjects
         //            Radius = radius;      // wird weitergeleitet
                 }
         */
-
         // ---------- Instanzmethoden ----------
-
         public double GetArea()
         {
             return Math.Pow(Radius, 2) * Math.PI;
@@ -89,7 +80,7 @@ namespace GeometricObjects
             return 2 * Radius * Math.PI;
         }
 
-        public void Move(double dx, double dy)
+        public virtual void Move(double dx, double dy)  // virtual Kap 4.6.1
         {
             XCoordinate += dx;
             YCoordinate += dy;
@@ -114,7 +105,6 @@ namespace GeometricObjects
         }
 
         // -------- Klassenmethoden Kap 3.9.2 ------------
-
         public static double GetArea(int radius)
         {
             return Math.Pow(radius, 2) * Math.PI;

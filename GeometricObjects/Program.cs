@@ -131,16 +131,34 @@ namespace GeometricObjects
             Console.WriteLine("gCircle.XCoordinate = " + gCircle.XCoordinate);
             Console.WriteLine("Anzahl der Kreise = {0}", GraphicCircle.CountCircles);
 
+            
             SubClass2 subi2 = new SubClass2();
             subi2.DoSomething();
 
-
             Flugzeug flg = new Flugzeug();
-            flg.Starten();
+            flg.Spannweite = 70;
+ //            flg.Starten();
+            flg.DoSomething(flg);
+
             Hubschrauber hubi = new Hubschrauber();
-            hubi.Starten();
+            hubi.Rotor = 45;
+//            hubi.Starten();
+            hubi.DoSomething(hubi);
 
 
+            Luftfahrzeug[] arr = new Luftfahrzeug[4];
+            arr[0] = new Flugzeug();
+            arr[1] = new Hubschrauber();
+            arr[2] = new Hubschrauber();
+            arr[3] = new Flugzeug();
+            foreach(Luftfahrzeug temp in arr)
+            {
+                temp.Starten();
+            }
+
+
+
+            // -------------------------------------------
             Console.ReadLine();
         }
     }   // class Program
