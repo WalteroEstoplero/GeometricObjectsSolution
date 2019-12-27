@@ -2,20 +2,23 @@
 
 namespace GeometricObjects
 {
-    public class Circle
+    public class Circle : GeometricObject
     {
+        // Kap. 5.2.1
+        public event InvalidMeasureEventHandler InvalidMeasure;
+
         // ---------- Klasseneigenschaft  Kap. 3.9.1 -----------------
         protected static int _CountCircles;
         // Klasseneigenschaftsmethode schreibgeschützt weil ohne set
         public static int CountCircles  {
             get { return _CountCircles; }
         }
-        public double XCoordinate { get; set; }
+//        public double XCoordinate { get; set; }
 //        private double _XCoordinate;
 //        public double XCoordinate { get => _XCoordinate; set => _XCoordinate = value; }
 //        public double XCoordinate { get { return _XCoordinate; } set { _XCoordinate = value; } }
 
-        public double YCoordinate { get; set; }
+//        public double YCoordinate { get; set; }
         //        private double _YCoordinate;
 
 //        public double YCoordinate  { get { return _YCoordinate; } set { _YCoordinate = value; } }
@@ -25,9 +28,17 @@ namespace GeometricObjects
         protected int _Radius;   // Dasselbe wie protected int _Radius = 0;
         public virtual int Radius   // virtual Kap 4.6.1
         {
-            get {return _Radius;}
-            set {if (value >= 0) _Radius = value;
-             else Console.Write("Unzulässiger negativer Wert."); }
+            get { return _Radius; }
+            set
+            {
+                if (value >= 0) _Radius = value;
+                else {
+                    // Kap. 5.2.1
+                    // Ereignis auslösen
+                    InvalidMeasure();
+                    //Console.Write("Unzulässiger negativer Wert.");
+            }
+        }
         }
         // --------- Konstruktoren ---------------
         public Circle() : this(0, 0, 0) { Console.WriteLine("Aufruf des Standardkonstruktors von Circle"); }                // immer 3 Parameter
@@ -70,17 +81,17 @@ namespace GeometricObjects
                 }
         */
         // ---------- Instanzmethoden ----------
-        public double GetArea()
+        public override double GetArea()
         {
             return Math.Pow(Radius, 2) * Math.PI;
         }
 
-        public double GetCircumference()
+        public override double GetCircumference()
         {
             return 2 * Radius * Math.PI;
         }
 
-        public virtual void Move(double dx, double dy)  // virtual Kap 4.6.1
+        public override /*virtual*/ void Move(double dx, double dy)  // virtual Kap 4.6.1
         {
             XCoordinate += dx;
             YCoordinate += dy;

@@ -11,10 +11,10 @@ namespace GeometricObjects
         {
             get { return _CountCircles; }
         }
-        public double XCoordinateL { get; set; }
-        public double YCoordinateL { get; set; }
-        public double XCoordinateR { get; set; }
-        public double YCoordinateR { get; set; }
+        public double XCoordinate { get; set; }
+        public double YCoordinate { get; set; }
+        public double length { get; set; }
+        public double height { get; set; }
 
         // --------- Konstruktoren ---------------
         public Rectangle() { Console.WriteLine("Aufruf des Standardkonstruktors von Rectangle"); }                // immer 3 Parameter
@@ -24,20 +24,18 @@ namespace GeometricObjects
         // ---------- Instanzmethoden ----------
         public double GetArea()
         {
-            return (XCoordinateR - XCoordinateL) * (YCoordinateR - YCoordinateL);
+            return length * height;
         }
 
         public double GetCircumference()
         {
-            return (2*(XCoordinateR - XCoordinateL) + (YCoordinateR - YCoordinateL));
+            return 2 * (length + height);
         }
 
         public virtual void Move(double dx, double dy)  // virtual Kap 4.6.1
         {
-            XCoordinateR += dx;
-            XCoordinateL += dx;
-            YCoordinateR += dy;
-            YCoordinateL += dy;
+            XCoordinate += dx;
+            YCoordinate += dy;
         }
 
         // Bigger Rückgaben int

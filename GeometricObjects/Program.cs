@@ -8,7 +8,10 @@ using Ausgabe = System.Console;     // Alias Kap 3.10.4
 
 namespace GeometricObjects
 {
-        class Program
+    // Kap. 5.2.1
+    public delegate void InvalidMeasureEventHandler();
+
+    class Program
     {
         static void Main(string[] args)
         {
@@ -161,5 +164,12 @@ namespace GeometricObjects
             // -------------------------------------------
             Console.ReadLine();
         }
+
+        // Kap 5.2.2 Ereignishandler
+        public static void kreis_InvalidMeasure()
+        {
+            Console.WriteLine("Unzulässiger negativer Radius.");
+        }
+
     }   // class Program
 }
