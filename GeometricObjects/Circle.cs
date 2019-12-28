@@ -37,7 +37,7 @@ namespace GeometricObjects
                     // Ereignis auslösen
                     if (InvalidMeasure != null)
                     {
-                        InvalidMeasure();       // 3. Eventbezeichner
+                        InvalidMeasure(this, new InvalidMeasureEventArgs(value));       // 3. Eventbezeichner
                     }
                     //Console.Write("Unzulässiger negativer Wert.");
             }

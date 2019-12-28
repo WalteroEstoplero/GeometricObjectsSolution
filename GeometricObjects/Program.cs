@@ -9,7 +9,7 @@ using Ausgabe = System.Console;     // Alias Kap 3.10.4
 namespace GeometricObjects
 {
     // Kap. 5.2.1
-    public delegate void InvalidMeasureEventHandler();      // 1.
+    public delegate void InvalidMeasureEventHandler(Object sender, InvalidMeasureEventArgs e);      // 1.
 
     class Program
     {
@@ -174,10 +174,33 @@ namespace GeometricObjects
 
 
         // Kap 5.2.2 Ereignishandler
-        public static void kreis_InvalidMeasure()   // 4.
+        // Regeln:
+        // Ereignishandler sind immer void
+        // 1. Parameter vom Typ Object: hier gibt sich der Auslöser (als Objekt) mit sender bekannt
+        // 2. Parameter vom Typ EventArgs: hier wird der Wert (value) weitergegeben
+        public static void kreis_InvalidMeasure(Object sender, InvalidMeasureEventArgs e)   // 4.
         {
-            Console.WriteLine("Event: unzulässiger negativer Radius.");
+            Console.WriteLine("Event: ein Radius von {0} ist nicht zulässig.", e.InvalidMeasure);
+            Console.Write("Neueingabe: ");
+            ((Circle)sender).Radius = Convert.ToInt32(Console.ReadLine());  // ? ((Circle)sender) ?
         }
 
     }   // class Program
+
+    public class InvalidMeasureEventArgs : EventArgs    // Funktioniert auch ohne EventArgs !
+    {
+        private int _InvalidMeasure;
+
+        public int InvalidMeasure
+        {
+            get { return _InvalidMeasure; }
+        }
+
+        // Konstruktor schafft schreibgeschützte Eigenschaft (ohne set)
+        public InvalidMeasureEventArgs(int invalidMeasure)
+        {
+            _InvalidMeasure = invalidMeasure;
+        }
+
+    }
 }
