@@ -9,7 +9,7 @@ using Ausgabe = System.Console;     // Alias Kap 3.10.4
 namespace GeometricObjects
 {
     // Kap. 5.2.1
-    public delegate void InvalidMeasureEventHandler();
+    public delegate void InvalidMeasureEventHandler();      // 1.
 
     class Program
     {
@@ -159,16 +159,24 @@ namespace GeometricObjects
                 temp.Starten();
             }
 
+            // Kap 5.2 Event
+            Circle eventKreis = new Circle();
+            // Kap 5.2.2 Abonnieren des Ereignisses: Eventbezeichner += Ereignishandler (public static)
+            // eventKreis.InvalidMeasure += new InvalidMeasureEventHandler(kreis_InvalidMeasure);  // 5.
+            eventKreis.InvalidMeasure += kreis_InvalidMeasure;
+            eventKreis.Radius = -2;
+
 
 
             // -------------------------------------------
             Console.ReadLine();
         }
 
+
         // Kap 5.2.2 Ereignishandler
-        public static void kreis_InvalidMeasure()
+        public static void kreis_InvalidMeasure()   // 4.
         {
-            Console.WriteLine("Unzulässiger negativer Radius.");
+            Console.WriteLine("Event: unzulässiger negativer Radius.");
         }
 
     }   // class Program

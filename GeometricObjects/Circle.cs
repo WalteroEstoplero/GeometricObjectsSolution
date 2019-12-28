@@ -4,8 +4,8 @@ namespace GeometricObjects
 {
     public class Circle : GeometricObject
     {
-        // Kap. 5.2.1
-        public event InvalidMeasureEventHandler InvalidMeasure;
+        // Kap. 5.2.1 InvalidMeasure = Eventbezeichner.
+        public event InvalidMeasureEventHandler InvalidMeasure; // 2.
 
         // ---------- Klasseneigenschaft  Kap. 3.9.1 -----------------
         protected static int _CountCircles;
@@ -35,7 +35,10 @@ namespace GeometricObjects
                 else {
                     // Kap. 5.2.1
                     // Ereignis auslösen
-                    InvalidMeasure();
+                    if (InvalidMeasure != null)
+                    {
+                        InvalidMeasure();       // 3. Eventbezeichner
+                    }
                     //Console.Write("Unzulässiger negativer Wert.");
             }
         }
